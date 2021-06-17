@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+:root {
+  --white: #fff;
+  --dark: #000;
+  --bgdark: #0a0a0a;
+
+  --letters: #222;
+  --lettersWhite: #bdbdbd;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+}
+
+h1 {
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+input {
+  font-family: 'DM Sans', sans-serif;
+}
+
+button {
+  padding: 8px 20px;
+  cursor: pointer;
+  border:none;
+}
+
+input {
+  padding: 8px 7px;
+  width: 100%;
+  font-size: 16px;
+  border: none;
+  border: rgb(174, 163, 163) solid 2px;
+  outline: none;
+  color: #222;
+}
+
+input:focus {
+  border-color: #222;
+}
+
+.title{
+  font-size: 30px;
+  font-weight: bold;
+  color: #000;
+}
+
+.subtitle{
+  font-size: 18px;
+  color: #222;
+}
+
+.wrapper {
+  min-height: 100vh;
+  background: #0a0a0a;
+
+}
+
+.container {
+  margin: 0;
+  width: calc(100% - 300px);
+  margin-left: 300px;
+}
+
+.container_2 {
+  max-width: 1700px;
+  margin: auto;
+}
+
+@media screen and (max-width: 2000px) {
+  .container_2 {
+    max-width: 1500px;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 1700px) {
+  .container_2 {
+    max-width: 1200px;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .container_2 {
+    max-width: 90%;
+    margin: auto;
+  }
+}

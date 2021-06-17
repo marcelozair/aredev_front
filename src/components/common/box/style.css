@@ -1,0 +1,40 @@
+.box{
+  background: hsla(0, 0%, 100%, 0.15);
+  padding: 20px;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+
+.box-img {
+  height: 80%;
+  background: #fff;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.22);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box-img p {
+  font-size: 80px;
+  color: #000;
+  font-weight: bold;
+}
+
+.box_text .title_box{
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.box_text .text_box{
+  font-weight: bold;
+  font-size: 15px;
+  color: #858585;
+}
+
+.box:hover{
+  background: hsla(0, 0%, 100%, 0.22);
+  transform: translateY(-7px);
+}

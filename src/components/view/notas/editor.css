@@ -1,0 +1,30 @@
+.editor *{
+  color: #000;
+}
+
+.ql-container.ql-snow{
+  border:none;
+  font-size: 17px;
+  background: #fff;
+  border-radius: 5px;
+  margin-top: 15px;
+  min-height: calc(90vh - 300px);
+
+}
+.editor img {
+  width: 50%;
+}
+
+.ql-toolbar{
+  background: rgb(175, 186, 242);
+  border-radius: 5px;
+  font-family: 'DM Sans', sans-serif;
+  height: auto;
+}
+
+.ql-formats button {
+  background: #fff !important;
+  margin-right: 5px !important;
+  border-radius: 5px;
+} 
+

@@ -1,0 +1,81 @@
+.button_btn {
+  color: #000;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.title-cabezera {
+  margin: 0;
+  font-size: 80px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.cabezara{
+  width: 100%;
+  height: 300px;
+  background: #000;
+  background: rgb(85,101,184);
+  background: linear-gradient(180deg, rgba(85,101,184,1) 0%, rgb(49, 61, 118)  100%);
+  margin-bottom: 25px;
+}
+
+
+.cabezara_container {
+  height: 300px;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 0;
+}
+
+.cabezara_text {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.notas {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 300px;
+  grid-gap: 40px;
+}
+
+@media screen and (max-width: 2000px) {
+  .notas {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media screen and (max-width: 1700px) {
+  .notas {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .notas {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+
+@media screen and (max-width: 1200px) {
+  .notas {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .notas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .notas {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+

@@ -1,0 +1,30 @@
+.alert {
+  width: 300px;
+  background: #fff;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.234);
+  display: flex;
+
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  z-index: 50;
+  transition: all 0.3s ease;
+}
+
+.color-header-alert {
+  width: 3px;
+  height: auto;
+}
+.danger-alert > .color-header-alert  {
+  background: rgb(191, 21, 21);
+}
+
+.success-alert > .color-header-alert  {
+  background: rgb(14, 209, 23);
+}
+
+.alert .text-alert {
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+}

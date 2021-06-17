@@ -1,0 +1,490 @@
+let section = document.querySelector('#section');
+
+// --- Categorias ---
+/*
+let Categorias = [
+	'<i class="fab fa-atlassian"></i>' + '<b>Action</b>',
+	'<i class="fab fa-autoprefixer"></i>' + '<b>Arcade</b>',
+	'<i class="fab fa-dyalog"></i>' + '<b>Deport</b>',
+	'<i class="fas fa-strikethrough"></i>' + '<b>Strategy</b>',
+	'<i class="fas fa-street-view"></i>' + '<b>Simulation</b>'
+]
+*/
+
+const app = new Vue({
+    el: '#app',
+    data: {
+        navbar: navbar(),
+        navbarMobile: navbarMobile(),
+        home: homeHTML(),
+        settings: settings()
+    }
+})
+
+
+function navbar() {
+    return (`
+<div class="user">
+ 	<i class="fas fa-user"></i>
+	<span> Usuario </span>
+	<div class="profilePhoto"></div>
+</div>
+
+<div class="options">
+	<i id="home" class="fas fa-home"></i>
+	<i id="modoDark" class="fas fa-eclipse"></i>
+	<i class="fas fa-question-circle"></i>
+</div>
+
+<div class="settings">
+<div>
+	<div class="logo"></div>
+	<i class="fas fa-sliders-h" id="setting"></i>
+</div>
+</div>
+`)
+}
+
+function navbarMobile() {
+    return (`
+
+<i onclick="openMore()" class="fas fa-bars"></i>
+
+<div class="profilePhotoMobile">
+	<span class="nameMobile">Usuario</span>
+</div>
+
+<div class="more">
+
+
+<i id="homeMobile" class="fas fa-home"></i>
+<i id="modoDarkMobile" class="fas fa-eclipse op2"></i>
+<i class="fas fa-question-circle"></i>
+
+<i class="fas fa-sliders-h" id="settingMobile"></i>
+
+</div>
+`)
+}
+
+function openMore() {
+let more = document.querySelector('.more');
+let ghostMobile = document.querySelector('.ghostMobile');
+
+ghostMobile.style.display = 'flex';
+more.style.left = '0';
+
+	ghostMobile.onclick=()=> {
+		ghostMobile.style.display = 'none';
+		more.style.left = '-100px';
+	}
+}
+
+// --- Home ---- //
+	let homeMobile = document.querySelector('#homeMobile');
+	homeMobile.addEventListener('click', (e) => {
+    let section = document.querySelector('#section');
+    section.innerHTML = "";
+    section.innerHTML = homeHTML();
+    document.querySelector('title').textContent = 'Giiber Net'
+    // Styles ---
+    let iconHome = document.querySelector('nav .fa-home');
+    iconHome.style.borderColor = 'var(--blue)';
+    iconHome.style.color = 'var(--blue)';
+
+    let setting = document.querySelector('#settingMobile')
+    setting.style.color = 'var(--black)';
+
+    if (document.querySelector('body').classList.contains('modoDark')) {
+        setting.style.color = '#fff';
+    }
+
+    setTimeout(function() {
+        let sectionHome = document.querySelector('.sectionHome');
+        sectionHome.style.cssText = 'opacity: 1; transform: scale(1)';
+    }, 100)
+})
+
+
+// Settings //
+let settingMobile = document.querySelector('#settingMobile')
+
+settingMobile.addEventListener('click', (e) => {
+
+    let section = document.querySelector('#section');
+    let iconHome = document.querySelector('nav .fa-home');
+    iconHome.style.borderColor = 'transparent';
+    iconHome.style.color = '#A9A9A9';
+
+    e.target.style.color = 'var(--blue)';
+
+    section.innerHTML = "";
+    section.innerHTML = settings();
+    document.querySelector('title').textContent = 'Giiber Net | Usuario'
+    setTimeout(function() {
+        document.querySelector('.sectionSettings').style.opacity = '1';
+        document.querySelector('.sectionSettings').style.transform = 'scale(1)';
+    }, 100)
+})
+
+
+// Modo oscuro xddd --- //
+let modoDarkMobile = document.querySelector('#modoDarkMobile');
+
+modoDarkMobile.addEventListener('click', (e) => {
+    let body = document.querySelector('body');
+    body.classList.toggle('modoDark');
+
+    // -- Estilos
+    let rootS = document.documentElement.style;
+    if (body.classList.contains('modoDark')) {
+        rootS.setProperty('--white', '#101010');
+        rootS.setProperty('--filterLogo', 'invert(50%)');
+        rootS.setProperty('--white2', '#090909');
+        rootS.setProperty('--colorListStyle', '#ededed');
+        rootS.setProperty('--portada', 'url(../img/portadaDark.png)');
+        rootS.setProperty('--backgroundTextoPortada', 'rgba(0,0,0,0.45)');
+        rootS.setProperty('--black', '#fff');
+        setting.style.color = '#fff'
+        document.querySelector('#theme').removeAttribute('content');
+        document.querySelector('#theme').setAttribute('content', '#101010');
+
+        e.target.style.color = '#FF8C00';
+        e.target.style.borderColor = '#FF8C00';
+        document.querySelector('#modoDark').style.color = '#FF8C00';
+        document.querySelector('#modoDark').style.borderColor = '#FF8C00';
+
+        localStorage.setItem('dark-mode', 'true');
+    } else {
+        rootS.setProperty('--white', '#fff');
+        rootS.setProperty('--filterLogo', 'invert(0)');
+        rootS.setProperty('--white2', '#ededed');
+        rootS.setProperty('--portada', 'url(../img/portada.png)');
+        rootS.setProperty('--backgroundTextoPortada', 'rgba(0,0,0,0.2)');
+        rootS.setProperty('--blurTextoPortada', 'blur(0)');
+        rootS.setProperty('--black', '#000');
+        setting.style.color = '#000';
+        rootS.setProperty('--colorListStyle', '#202020');
+        document.querySelector('#theme').removeAttribute('content');
+        document.querySelector('#theme').setAttribute('content', '#fff');
+
+        e.target.style.color = '#202020';
+        e.target.style.borderColor = 'transparent';
+        document.querySelector('#modoDark').style.color = '#202020';
+        document.querySelector('#modoDark').style.borderColor = 'transparent';
+
+        localStorage.setItem('dark-mode', 'false');
+    }
+ });
+
+function homeHTML() {
+    return (`
+<div class="sectionHome">
+	<div class="portada"></div>
+		<div class="contenedorHome">
+
+			<div class="categoria">
+				<h1> Categorias </h1>
+				<li> AcciÃ³n </li>
+				<li> Arcade </li>
+				<li> Deporte </li>
+				<li> Estrategia </li>
+			</div>
+
+			<div class="juegosHome">
+				${gamesHome()}
+			</div>
+		</div>
+</div>
+`)
+}
+
+function gamesHome() {
+    return (`
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	`)
+}
+
+
+// -- Eventos Listener de las opciones -- //
+let setting = document.querySelector('#setting')
+
+setting.addEventListener('click', (e) => {
+
+    let section = document.querySelector('#section');
+    let iconHome = document.querySelector('nav .fa-home');
+    iconHome.style.borderColor = 'transparent';
+    iconHome.style.color = '#A9A9A9';
+
+    e.target.style.color = 'var(--blue)';
+
+    section.innerHTML = "";
+    section.innerHTML = settings();
+    document.querySelector('title').textContent = 'Giiber Net | Usuario'
+    setTimeout(function() {
+        document.querySelector('.sectionSettings').style.opacity = '1';
+        document.querySelector('.sectionSettings').style.transform = 'scale(1)';
+    }, 100)
+})
+
+// --- Home ---- //
+let home = document.querySelector('#home');
+home.addEventListener('click', (e) => {
+    let section = document.querySelector('#section');
+    section.innerHTML = "";
+    section.innerHTML = homeHTML();
+    document.querySelector('title').textContent = 'Giiber Net'
+    // Styles ---
+    let iconHome = document.querySelector('nav .fa-home');
+    iconHome.style.borderColor = 'var(--blue)';
+    iconHome.style.color = 'var(--blue)';
+
+    let setting = document.querySelector('#setting')
+    setting.style.color = 'var(--black)';
+
+    if (document.querySelector('body').classList.contains('modoDark')) {
+        setting.style.color = '#fff';
+    }
+
+    setTimeout(function() {
+        let sectionHome = document.querySelector('.sectionHome');
+        sectionHome.style.cssText = 'opacity: 1; transform: scale(1)';
+    }, 100)
+})
+
+// Modo oscuro xddd --- //
+let modoDark = document.querySelector('#modoDark');
+modoDark.addEventListener('click', (e) => {
+    let body = document.querySelector('body');
+    body.classList.toggle('modoDark');
+
+    // -- Estilos
+    let rootS = document.documentElement.style;
+    if (body.classList.contains('modoDark')) {
+        rootS.setProperty('--white', '#101010');
+        rootS.setProperty('--filterLogo', 'invert(50%)');
+        rootS.setProperty('--white2', '#090909');
+        rootS.setProperty('--colorListStyle', '#ededed');
+        rootS.setProperty('--portada', 'url(../img/portadaDark.png)');
+        rootS.setProperty('--backgroundTextoPortada', 'rgba(0,0,0,0.45)');
+        rootS.setProperty('--black', '#fff');
+        setting.style.color = '#fff'
+        document.querySelector('#theme').removeAttribute('content');
+        document.querySelector('#theme').setAttribute('content', '#101010');
+
+        e.target.style.color = '#FF8C00';
+        e.target.style.borderColor = '#FF8C00';
+        document.querySelector('#modoDarkMobile').style.color = '#FF8C00';
+        document.querySelector('#modoDarkMobile').style.borderColor = '#FF8C00';
+
+        localStorage.setItem('dark-mode', 'true');
+    } else {
+        rootS.setProperty('--white', '#fff');
+        rootS.setProperty('--filterLogo', 'invert(0)');
+        rootS.setProperty('--white2', '#ededed');
+        rootS.setProperty('--portada', 'url(../img/portada.png)');
+        rootS.setProperty('--backgroundTextoPortada', 'rgba(0,0,0,0.2)');
+        rootS.setProperty('--blurTextoPortada', 'blur(0)');
+        rootS.setProperty('--black', '#000');
+        setting.style.color = '#000';
+        rootS.setProperty('--colorListStyle', '#202020');
+        document.querySelector('#theme').removeAttribute('content');
+        document.querySelector('#theme').setAttribute('content', '#fff');
+
+        e.target.style.color = '#202020';
+        e.target.style.borderColor = 'transparent';
+        document.querySelector('#modoDarkMobile').style.color = '#202020';
+        document.querySelector('#modoDarkMobile').style.borderColor = 'transparent';
+        localStorage.setItem('dark-mode', 'false');
+    }
+
+})
+
+function settings() {
+    return (`
+<div class="sectionSettings"> 
+	<div class="settingsProfile">
+		<h1> Foto de Perfil </h1>
+		<input accept="image/png, image/jpeg" id="subirFoto" style="display:none;" type="file" onchange="AgregarImagen()">
+			<div class="profilePhotoBig"> <label style="width:100%;height:100%;border-radius:50%;display:flex;justify-content:center;align-items:center;cursor:pointer;" for="subirFoto"> <i class="fas fa-camera-retro"></i> </label> </div>
+
+	<div class="formProfile">
+		<input autocomplete="off" id="nameForm" oninput="nameFormOnInput(this)" type="text">
+	</div>
+	</div>
+
+	<div onclick="borrarDatos(this)" class="borrarDatos"> Borrar Datos </div>
+
+</div>
+`)
+}
+
+function borrarDatos(e) {
+    e.style.transform = 'translateX(-50%) scale(1.1)';
+    localStorage.removeItem('name');
+    localStorage.removeItem('imagen');
+    let nameUser = document.querySelector('.user span');
+    nameUser.innerHTML = 'Usuario';
+    setTimeout(reload, 500);
+}
+
+function reload() {
+    location.reload();
+}
+
+// -- Input de Foto
+function AgregarImagen() {
+    // Variables necesarias para esta funcion (De Imagenes)
+    let imagen = document.querySelector('#subirFoto');
+    let imagenDeSettings = document.querySelector('.profilePhotoBig');
+    let imagenDePerfil = document.querySelector('.profilePhoto');
+    let imagenDePerfilMobile = document.querySelector('.profilePhotoMobile');
+
+    // Lector y conversor del aarchivo
+    let reader = new FileReader();
+
+    reader.readAsDataURL(imagen.files[0])
+    reader.onload = () => {
+        imagenDePerfil.style.backgroundImage = `url(${reader.result})`;
+        imagenDePerfilMobile.style.backgroundImage = `url(${reader.result})`;
+        imagenDeSettings.style.backgroundImage = `url(${reader.result})`;
+        imagenDeSettings.style.color = 'transparent';
+        localStorage.setItem('imagen', reader.result);
+
+        let mensaje = document.createElement('div');
+        mensaje.setAttribute('onclick', `reload()`)
+        mensaje.textContent = 'PÃºlsame para guardar los datos';
+        mensaje.setAttribute('style', `
+				padding: 10px;
+				font-weight: bolder;
+				position: fixed;
+				right: 20px;
+				bottom: 20px;
+				background-color: var(--blue);
+				color: #fff;
+				cursor: pointer;
+			`)
+        document.querySelector('#app').append(mensaje);
+    }
+}
+
+// -- Input de texto
+function nameFormOnInput(e) {
+    let valor = e.value;
+    // variable de nombre de usuario abajo //
+    let nameUser = document.querySelector('.user span');
+    let nameUserMobile = document.querySelector('.nameMobile');
+
+    if (valor.length >= 9) {
+        nameUser.innerHTML = "";
+        nameUserMobile.innerHTML = "";
+
+        // Nombre muy largo info que se crearÃ¡ <----
+        let nombreLargo = document.createElement('span')
+        nombreLargo.innerHTML = `${valor} <br> Es muy largo`;
+        document.querySelector('#app').append(nombreLargo);
+        nombreLargo.setAttribute('class', 'nombreLargo');
+        setTimeout(function() { nombreLargo.style.opacity = '0';
+            setTimeout(function() { nombreLargo.remove() }, 4000) }, 3000)
+    } else {
+        // -- Escribir nombre de usuario en tiempo real
+        nameUser.innerHTML = valor.charAt(0).toUpperCase() + valor.slice(1);
+        nameUserMobile.innerHTML = valor.charAt(0).toUpperCase() + valor.slice(1);
+        // Enviando nombre a base de datos local
+        localStorage.setItem('name', valor.charAt(0).toUpperCase() + valor.slice(1));
+    }
+}
+
+if (localStorage.getItem('name')) {
+    let valor = localStorage.getItem('name');
+
+    // variable de nombre de usuario abajo //
+    let nameUser = document.querySelector('.user span');
+    nameUser.innerHTML = valor;
+
+    let nameUserMobile = document.querySelector('.nameMobile');
+    nameUserMobile.innerHTML = valor;
+}
+
+if (localStorage.getItem('imagen')) {
+    let valorImagen = localStorage.getItem('imagen');
+
+    // Variables necesarias para carga de datos (De Imagenes)
+    let imagen = document.querySelector('#subirFoto');
+    let imagenDeSettings = document.querySelector('.profilePhotoBig');
+    let imagenDePerfil = document.querySelector('.profilePhoto');
+    let imagenDePerfilMobile = document.querySelector('.profilePhotoMobile');
+    let setting = document.querySelector('#setting');
+
+    document.querySelector('#setting').onclick = () => {
+        setTimeout(function() {
+            document.querySelector('#section').innerHTML = `
+<div class="sectionSettings"> 
+	<div class="settingsProfile">
+			<h1> Foto de Perfil </h1>
+			<input accept="image/png, image/jpeg" id="subirFoto" style="display:none;" type="file" onchange="AgregarImagen()">
+			<div class="profilePhotoBig" style="background-image: url(${valorImagen}); color: transparent;"> <label style="width:100%;height:100%;border-radius:50%;display:flex;justify-content:center;align-items:center;cursor:pointer;" for="subirFoto"> Subir foto </label> </div>
+
+			<div class="formProfile">
+				<input autocomplete="off" id="nameForm" oninput="nameFormOnInput(this)" type="text">
+		</div>
+	</div>
+<div onclick="borrarDatos(this)" class="borrarDatos"> Borrar Datos </div>
+</div>
+			`;
+        }, 0)
+    }
+	
+	imagenDePerfilMobile.style.backgroundImage = `url(${valorImagen})`;
+    imagenDePerfil.style.backgroundImage = `url(${valorImagen})`;
+    localStorage.setItem('imagen', valorImagen);
+}
+
+// -- Al cargar la pagina --
+window.addEventListener('load', () => {
+    let body = document.querySelector('body');
+    body.style.overflowY = 'visible';
+    let sectionHome = document.querySelector('.sectionHome');
+    let ghost = document.querySelector('.ghost');
+    ghost.style.opacity = '0';
+    ghost.style.zIndex = '-10';
+    sectionHome.style.cssText = 'opacity: 1; transform: scale(1)';
+})
+
+if (localStorage.getItem('dark-mode') === 'true') {
+    let body = document.querySelector('body');
+    body.classList.add('modoDark');
+
+    // -- Estilos
+    let rootS = document.documentElement.style;
+    rootS.setProperty('--white', '#101010');
+    rootS.setProperty('--filterLogo', 'invert(50%)');
+    rootS.setProperty('--white2', '#090909');
+    rootS.setProperty('--colorListStyle', '#ededed');
+    rootS.setProperty('--portada', 'url(../img/portadaDark.png)');
+    rootS.setProperty('--backgroundTextoPortada', 'rgba(0,0,0,0.45)');
+    rootS.setProperty('--black', '#fff');
+    setting.style.color = '#fff'
+    document.querySelector('#theme').removeAttribute('content');
+    document.querySelector('#theme').setAttribute('content', '#101010');
+
+    document.querySelector('#modoDark').style.color = '#FF8C00';
+    document.querySelector('#modoDark').style.borderColor = '#FF8C00';
+
+    document.querySelector('#modoDarkMobile').style.color = '#FF8C00';
+    document.querySelector('#modoDarkMobile').style.borderColor = '#FF8C00';
+}
